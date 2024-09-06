@@ -24,7 +24,7 @@ const UserSignUp = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),  
+        body: JSON.stringify(formData),
       });
       const data = await res.json();
       setLoading(false);
@@ -32,7 +32,7 @@ const UserSignUp = () => {
         setError(true);
         return;
       }
-      navigate("/user_signin")
+      navigate("/user_signin");
     } catch (error) {
       setLoading(false);
       setError(true);
