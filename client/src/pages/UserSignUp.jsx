@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 const UserSignUp = () => {
   const [formData, setFormData] = useState({});
@@ -12,7 +13,6 @@ const UserSignUp = () => {
       [e.target.id]: e.target.value,
     });
   };
-  console.log(formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,11 +72,12 @@ const UserSignUp = () => {
         >
           {loading ? "Signing up..." : "Sign up"}
         </button>
+        <OAuth/>
       </form>
       <div className="flex gap-3 mt-4">
         <p>Already have an account?</p>
         <Link to="/user_signin">
-          <span className="text-blue-500">Sign In</span>
+          <span className="text-blue-500">Sign In here</span>
         </Link>
       </div>
       <p className="text-red-600 mt-5"> {error && "Something went wrong"}</p>

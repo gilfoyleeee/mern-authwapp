@@ -10,7 +10,7 @@ export const signup = async (req, res, next) => {
   try {
     await newUser.save();
     res.status(201).json({
-      message: "A new user created",
+      message: "A new user is created",
     });
   } catch (error) {
     next(error);
@@ -35,4 +35,42 @@ export const signin = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+export const google = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const { password: encryptedPassword, ...rest } = user._doc;
+      const expiryDate = new Date(Date.now() + 3600000);
+      res
+        .cookie("token", token, { httpOnly: true, expires: expiryDate })
+        .status(200)
+        .json(rest);
+    } else {
+      const randGenPw = Math.random().toString(36).slice(-8);
+      const encryptedPassword = bcryptjs.hashSync(randGenPw, 10);
+      const newUser = new User({
+        username:
+          req.body.name.split(" ").join("").toLowerCase() +
+          Math.floor(Math.random() * 10000).toString(),
+        email: req.body.email,
+        password: encryptedPassword,
+        profilePicture: req.body.photo,
+      });
+      await newUser.save();
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const { password: encryptedPassword2, ...rest } = newUser._doc;
+      const expiryDate = new Date(Date.now() + 3600000);
+      res
+        .cookie("token", token, { httpOnly: true, expires: expiryDate })
+        .status(200)
+        .json(rest);
+    }
+  } catch (error) {
+    console.error("Google authentication error: ", error);
+    return res.status(500).json({ message: "Server error during Google authentication" });
+  }
+  
 };
