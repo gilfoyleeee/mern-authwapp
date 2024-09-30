@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Error = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold text-red-600 mb-4">
-        Access Denied
+    <div className="flex flex-col items-center justify-center mt-[10rem]">
+      <h1 className="text-5xl font-bold uppercase text-red-600 mb-10">
+        Access Denied !
       </h1>
       <p className="text-lg text-gray-700 mb-8">
-        You are restricted from accessing this page. Please sign in to continue.
+        You are restricted from accessing this page. Please sign in or create new account to continue.
       </p>
       <div className='flex gap-x-5'>
 
