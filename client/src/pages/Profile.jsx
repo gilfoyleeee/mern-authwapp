@@ -98,6 +98,7 @@ const Profile = () => {
         return;
       }
       dispatch(deleteUserSuccess(data));
+      navigate("/user_signin")
     } catch (error) {
       dispatch(deleteUserFailure(error));
     }

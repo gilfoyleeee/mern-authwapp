@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     },
     profilePicture:{
         type: String,
-        default: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Yaficbwe3N2MjD2Sg0J9OgHaHa%26pid%3DApi&f=1&ipt=2f8510a7e1a10b78117a6c28f940b65063672847fe873e90438edbbc0082b6c2&ipo=images'
+        default: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic-00.iconduck.com%2Fassets.00%2Fuser-icon-1024x1024-dtzturco.png&f=1&nofb=1&ipt=38b9085bc1735b08cd813eb9f52a74b954048669acafc78ca616b51fe141bb46&ipo=images'
     }
 }, {timestamps: true});
 
